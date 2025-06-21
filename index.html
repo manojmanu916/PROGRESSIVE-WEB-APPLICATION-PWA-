@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopPWA - Your Mobile Store</title>
+    <meta name="description" content="Modern PWA E-commerce Platform">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS specific meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="ShopPWA">
+    <link rel="apple-touch-icon" href="images/icon-192x192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <i class="fas fa-shopping-bag"></i>
+                    ShopPWA
+                </h1>
+                <div class="header-actions">
+                    <button id="notification-btn" class="icon-btn" title="Enable Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notification-status"></span>
+                    </button>
+                    <button id="cart-btn" class="icon-btn" title="Shopping Cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </button>
+                    <button id="install-btn" class="install-btn" style="display: none;">
+                        <i class="fas fa-download"></i>
+                        Install App
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Connection Status -->
+            <div id="offline-indicator" class="offline-indicator" style="display: none;">
+                <i class="fas fa-wifi"></i> You're offline - browsing cached content
+            </div>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h2>Welcome to ShopPWA</h2>
+                    <p>Your favorite products, now available offline!</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Products</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Available</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">Offline</span>
+                            <span class="stat-label">Ready</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filters">
+                <h3>Shop by Category</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All Products</button>
+                    <button class="filter-btn" data-category="electronics">Electronics</button>
+                    <button class="filter-btn" data-category="clothing">Clothing</button>
+                    <button class="filter-btn" data-category="books">Books</button>
+                    <button class="filter-btn" data-category="home">Home & Garden</button>
+                </div>
+            </section>
+
+            <!-- Products Grid -->
+            <section class="products">
+                <div class="products-header">
+                    <h3>Featured Products</h3>
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid">
+                            <i class="fas fa-grip-horizontal"></i>
+                        </button>
+                        <button class="view-btn" data-view="list">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="products-grid" class="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+                <div id="loading" class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading products...</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Shopping Cart</h3>
+                <button class="close-btn" id="close-cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items" class="cart-items">
+                    <!-- Cart items will be displayed here -->
+                </div>
+                <div class="cart-total">
+                    <div class="total-line">
+                        <span>Total: $<span id="cart-total">0.00</span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="clear-cart">Clear Cart</button>
+                <button class="btn btn-primary" id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Permission Modal -->
+    <div id="notification-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Stay Updated!</h3>
+                <button class="close-btn" id="close-notification">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="notification-content">
+                    <i class="fas fa-bell notification-icon"></i>
+                    <p>Get notified about new products, sales, and exclusive offers!</p>
+                    <div class="notification-benefits">
+                        <div class="benefit">
+                            <i class="fas fa-tag"></i>
+                            <span>Exclusive discounts</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-gift"></i>
+                            <span>New arrival alerts</span>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-clock"></i>
+                            <span>Limited time offers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="deny-notifications">Not Now</button>
+                <button class="btn btn-primary" id="allow-notifications">Enable Notifications</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
