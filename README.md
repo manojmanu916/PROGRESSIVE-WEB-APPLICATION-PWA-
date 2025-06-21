@@ -83,5 +83,13 @@ DESCRIPTION:
 
 ShopPWA is a well-structured and feature-rich Progressive Web Application. Its thoughtful architecture enables robust offline experiences, real-time engagement, and installation capabilities. It serves as a comprehensive example of how modern web technologies can replicate the behavior and performance of native mobile applications using HTML, CSS, and JavaScript alone.
 
+output:
 
+![Image](https://github.com/user-attachments/assets/72d6a96c-6b71-4bbb-9006-9eafd01e186d)
+![Image](https://github.com/user-attachments/assets/4a2cc249-765d-479c-9919-57569798d03e)
+![Image](https://github.com/user-attachments/assets/cfd96c59-c6cc-4844-8722-7f0f7ee6f707)
+![Image](https://github.com/user-attachments/assets/e109841e-0ab7-4b1d-8ea3-2cfedfdd8eb3)
+![Image](https://github.com/user-attachments/assets/00dcfb90-132c-46b0-8fd3-5c8fdce28ba6)
+
+![Image](https://github.com/user-attachments/assets/24bda8c0-be04-468f-a70e-a8fc841e4ab7)
 
